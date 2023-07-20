@@ -17,7 +17,7 @@ export async function register(email, password) {
       body: JSON.stringify({
         email:  email, 
         password: password }),
-    }).then((res)=>res.json());
+    }).then(checkError);
     
 }
 
@@ -29,7 +29,7 @@ export async function authorize(email, password) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  }).then((response) => response.json());
+  }).then(checkError);
 }
 
 export async function getToken(token) {
@@ -40,5 +40,5 @@ export async function getToken(token) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  }).then((res)=>res.json());
+  }).then(checkError);
 }

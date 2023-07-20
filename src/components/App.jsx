@@ -121,17 +121,13 @@ function App() {
   async function registerUser(email, password) {
     try{
       const result = await register(email, password)
-      .then((res)=>{
-        if(res.error) {
-          setIsError(true);
-        }
-        else {
-          setIsSuccesful(true);
-          navigate('/', {replace:true});
-        }
+      .then(()=>{
+        setIsSuccesful(true);
+        navigate('/', {replace:true});
       })
     }
     catch (err) {
+      setIsError(true);
       console.log(err);  
     }    
   }
@@ -149,7 +145,6 @@ function App() {
     })
     .catch((err)=>{
       console.log(err);
-      
     })
   }
 
@@ -161,6 +156,9 @@ function App() {
         setLoggedIn(true);
         setEmailDisplay(res.data.email);
         navigate('/', {replace:true});
+      })
+      .catch((err)=>{
+        console.log(err);
       })
     }
   }
